@@ -135,11 +135,13 @@ with col1:
             recommendations_total["Today"] = end
             recommendations_total_final = recommendations_total[['name', '종가', 'pred_aver']]
             recommendations_total_final = recommendations_total_final.sort_values(by='pred_aver', ascending = False)
-            recommendations_total_final.drop_duplicates()
+            recommendations_total_final = recommendations_total_final.drop_duplicates()
+            
             st.write((f"\n####### Model 정확도: {(model_1.score(X_test, y_test) + model_2.score(X_test, y_test) + model_3.score(X_test, y_test))*100/3:.2f} %"))
             st.dataframe(recommendations_total_final)
 
             
+
 
 
 
