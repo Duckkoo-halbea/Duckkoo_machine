@@ -65,20 +65,7 @@ with col1:
     
     if st.button("할배, 알려주세요!"):
         with st.spinner("덕구머신이 종목을 추천하고 있습니다..."):
-            '''
-            tickers = stock.get_market_ticker_list(end, market="KOSPI") + stock.get_market_ticker_list(end, market="KOSDAQ")
-            data_list = []
-            for t in tickers[:num_thicker]:  
-                try:
-                    df = stock.get_market_ohlcv_by_date(start, end, t)
-                    df["ticker"] = t
-                    data_list.append(df)
-                except:
-                    continue
-
-            data = pd.concat(data_list)
-            data.reset_index(inplace=True)
-            '''
+            ##### CSV File 지정 주소
             url = "https://github.com/Duckkoo-halbea/Duckkoo_machine/blob/main/market_data.csv" + "?raw=true"
             data = pd.read_csv(url)
             
@@ -151,6 +138,7 @@ with col1:
             st.dataframe(recommendations_total_final)
 
             
+
 
 
 
