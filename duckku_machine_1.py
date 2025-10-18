@@ -17,6 +17,7 @@ st.subheader("👵 덕구머신은 일주일 뒤 주가가 많이 오를 주식�
 today = datetime.today()
 start = (today - timedelta(days = 365)).strftime("%Y%m%d")
 acc_days = 365
+st.write(string(today))
 
 col1, col2 = st.columns(2)
 with col1:
@@ -147,3 +148,4 @@ with col1:
             st.dataframe(recommendations_total_final)
 
             
+
