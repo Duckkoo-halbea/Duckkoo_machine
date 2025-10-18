@@ -29,10 +29,7 @@ with col1:
     today = datetime.today()
     start = (today - timedelta(days = acc_days)).strftime("%Y%m%d")
     end = today.strftime("%Y%m%d")
-    
-    st.write(start)
-    st.write(end)
-    
+
     ###### Model_1 학습 ######
     model_1 = LGBMClassifier(
         n_estimators=1000,      # 트리 개수 (RandomForest의 n_estimators와 비슷)
@@ -69,7 +66,6 @@ with col1:
     if st.button("실행하기"):
         with st.spinner("덕구머신이 종목을 추천하고 있습니다..."):
             tickers = stock.get_market_ticker_list(end, market="KOSPI") + stock.get_market_ticker_list(end, market="KOSDAQ")
-            st.write(tickers)
             data_list = []
             for t in tickers[:num_thicker]:  
                 try:
@@ -151,6 +147,7 @@ with col1:
             st.dataframe(recommendations_total_final)
 
             
+
 
 
 
