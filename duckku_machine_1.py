@@ -117,7 +117,7 @@ with col1:
                 return result.iloc[0] if len(result) > 0 else ticker  # 없는 경우 ticker 그대로 반환
             
             # 예: latest_data에서 변환
-            latest_data["name"] = latest_data["ticker"].apply(get_name_from_local)
+            latest_data["name"] = data["ticker"].apply(get_name_from_local)
             
             #latest_data = data.groupby("ticker").tail(1)
             X_latest = scaler.transform(latest_data[features])
@@ -146,6 +146,7 @@ with col1:
             st.dataframe(recommendations_total_final)
 
             
+
 
 
 
