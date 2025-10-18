@@ -22,9 +22,9 @@ st.write(today)
 col1, col2 = st.columns(2)
 with col1:
     
-    num_thicker = st.slider("**📊  탐색 종목 범위 (Max 1500)**", min_value=100, max_value=1500, value=200, step=10)
+    #num_thicker = st.slider("**📊  탐색 종목 범위 (Max 1500)**", min_value=100, max_value=1500, value=200, step=10)
     exp_gain = st.slider("**📊  원하는 수익률 목표(%)**", min_value=5, max_value=100, value=10, step=5) / 100    
-    targ_thicker = st.slider("**📊  찾고싶은 종목 개수 (Max 50)**", min_value=10, max_value=50, value=10, step=10)
+    targ_thicker = st.slider("**📊  찾고싶은 종목 개수 (Max 100)**", min_value=10, max_value=100, value=10, step=5)
     
     today = datetime.today()
     start = (today - timedelta(days = acc_days)).strftime("%Y%m%d")
@@ -134,10 +134,12 @@ with col1:
             recommendations_total["Today"] = end
             recommendations_total_final = recommendations_total[['name', '종가', 'pred_aver']]
             recommendations_total_final = recommendations_total_final.sort_values(by='pred_aver', ascending = False)
+            recommendations_total_final.drop_duplicates()
             
             st.dataframe(recommendations_total_final)
 
             
+
 
 
 
