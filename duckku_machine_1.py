@@ -113,7 +113,8 @@ with col1:
             
             latest_data = data.groupby("ticker").tail(1)
             X_latest = scaler.transform(latest_data[features])
-
+            latest_data["name"] = latest_data["ticker"].apply(stock.get_market_ticker_name)
+            
             latest_data["pred"] = np.round(model_1.predict_proba(X_latest)[:, 1]*100,2)
             latest_data["pred_2"] = np.round(model_2.predict_proba(X_latest)[:, 1]*100,2)
             latest_data["pred_3"] = np.round(model_3.predict_proba(X_latest)[:, 1]*100,2)
@@ -138,6 +139,7 @@ with col1:
             st.dataframe(recommendations_total_final)
 
             
+
 
 
 
