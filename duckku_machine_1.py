@@ -63,8 +63,9 @@ with col1:
         random_state=42
     )
     
-    if st.button("실행하기"):
+    if st.button("할배, 알려주세요!"):
         with st.spinner("덕구머신이 종목을 추천하고 있습니다..."):
+            '''
             tickers = stock.get_market_ticker_list(end, market="KOSPI") + stock.get_market_ticker_list(end, market="KOSDAQ")
             data_list = []
             for t in tickers[:num_thicker]:  
@@ -77,7 +78,10 @@ with col1:
 
             data = pd.concat(data_list)
             data.reset_index(inplace=True)
-
+            '''
+            url = "https://github.com/Duckkoo-halbea/Duckkoo_machine/blob/main/market_data.csv" + "?raw=true"
+            data = pd.read_csv(url)
+            
             ###### 데이터 Feature 생성 (X인자) ######
 
             data["return_5d"] = data["종가"].pct_change(5) # 차이 100분율을 의미함
@@ -147,6 +151,7 @@ with col1:
             st.dataframe(recommendations_total_final)
 
             
+
 
 
 
