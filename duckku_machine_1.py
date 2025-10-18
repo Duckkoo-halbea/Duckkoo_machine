@@ -18,7 +18,6 @@ st.write("###### 예상소요시간 30초 조금만 기다려 주세요~ :)")
 today = datetime.today()
 start = (today - timedelta(days = 365)).strftime("%Y%m%d")
 acc_days = 365
-st.write(today)
 
 col1, col2 = st.columns(2)
 with col1:
@@ -113,7 +112,7 @@ with col1:
             print(f"#### 테스트 정확도 L_GBM_ 3: {model_3.score(X_test, y_test)*100:.4f}")
             
             def get_name_from_local(ticker):
-                result = ticker_map.loc[ticker_map["ticker"] == ticker, "name"]
+                result = mapping_data.loc[mapping_data["ticker"] == ticker, "name"]
                 return result.iloc[0] if len(result) > 0 else ticker  # 없는 경우 ticker 그대로 반환
             
             # 예: latest_data에서 변환
@@ -146,6 +145,7 @@ with col1:
             st.dataframe(recommendations_total_final)
 
             
+
 
 
 
