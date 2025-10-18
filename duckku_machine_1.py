@@ -130,6 +130,12 @@ with col1:
             recommendations_3_df = recommendations_2[["ticker", "name", "종가", "pred", "pred_2", "pred_3"]]
 
             recommendations_total = pd.concat([recommendations_3_df, recommendations_2_df, recommendations_df], axis = 0)
+            
+            def get_name_from_local(ticker):
+                result = mapping_data.loc[mapping_data["ticker"] == ticker, "name"]
+                return result.iloc[0] if len(result) > 0 else ticker  # 없는 경우 ticker 그대로 반환
+                
+            recommendations_total["name"] = recommendations_total["ticker"].apply(get_name_from_local)
             recommendations_total["pred_aver"] = (recommendations_total["pred"] + recommendations_total["pred_2"] + recommendations_total["pred_3"]) / 3
             recommendations_total["Today"] = end
             recommendations_total_final = recommendations_total[['name', '종가', 'pred_aver']]
@@ -139,6 +145,7 @@ with col1:
             st.dataframe(recommendations_total_final)
 
             
+
 
 
 
