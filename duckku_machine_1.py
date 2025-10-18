@@ -69,6 +69,8 @@ with col1:
             ##### CSV File 지정 주소
             url = "https://github.com/Duckkoo-halbea/Duckkoo_machine/blob/main/market_data.csv" + "?raw=true"
             data = pd.read_csv(url)
+            url_2 = "https://github.com/Duckkoo-halbea/Duckkoo_machine/blob/main/ticker_name_mapping_20251018.csv" + "?raw=true"
+            mapping_data = pd.read_csv(url_2)
             
             ###### 데이터 Feature 생성 (X인자) ######
 
@@ -109,8 +111,15 @@ with col1:
             print(f"\n#### 테스트 정확도 R_FOR_ 1: {model_1.score(X_test, y_test)*100:.4f}")
             print(f"#### 테스트 정확도 L_GBM_ 2: {model_2.score(X_test, y_test)*100:.4f}")
             print(f"#### 테스트 정확도 L_GBM_ 3: {model_3.score(X_test, y_test)*100:.4f}")
-
-            latest_data = data.groupby("ticker").tail(1)
+            
+            def get_name_from_local(ticker):
+                result = ticker_map.loc[ticker_map["ticker"] == ticker, "name"]
+                return result.iloc[0] if len(result) > 0 else ticker  # 없는 경우 ticker 그대로 반환
+            
+            # 예: latest_data에서 변환
+            latest_data["name"] = latest_data["ticker"].apply(get_name_from_local)
+            
+            #latest_data = data.groupby("ticker").tail(1)
             X_latest = scaler.transform(latest_data[features])
 
             latest_data["pred"] = np.round(model_1.predict_proba(X_latest)[:, 1]*100,2)
@@ -137,6 +146,7 @@ with col1:
             st.dataframe(recommendations_total_final)
 
             
+
 
 
 
