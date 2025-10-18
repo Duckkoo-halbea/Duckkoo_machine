@@ -136,7 +136,7 @@ with col1:
                 return result.iloc[0] if len(result) > 0 else ticker  # 없는 경우 ticker 그대로 반환
                 
             recommendations_total["name"] = recommendations_total["ticker"].apply(get_name_from_local)
-            recommendations_total["pred_aver"] = (recommendations_total["pred"] + recommendations_total["pred_2"] + recommendations_total["pred_3"]) / 3
+            recommendations_total["pred_aver"] = round((recommendations_total["pred"] + recommendations_total["pred_2"] + recommendations_total["pred_3"]) / 3, 2)
             recommendations_total["Today"] = end
             recommendations_total_final = recommendations_total[['name', '종가', 'pred_aver']]
             recommendations_total_final = recommendations_total_final.sort_values(by='pred_aver', ascending = False)
@@ -146,6 +146,7 @@ with col1:
             st.dataframe(recommendations_total_final)
 
             
+
 
 
 
