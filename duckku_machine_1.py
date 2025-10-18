@@ -13,6 +13,7 @@ warnings.filterwarnings('ignore')
 
 st.set_page_config(page_title="👵덕구할배의 덕구머신 ver1", layout="wide")
 st.subheader("👵 덕구머신은 일주일 뒤 주가가 많이 오를 주식을 찾아줍니다!")
+st.write("###### 예상소요시간 30초 조금만 기다려 주세요~ :)")
 
 today = datetime.today()
 start = (today - timedelta(days = 365)).strftime("%Y%m%d")
@@ -135,10 +136,11 @@ with col1:
             recommendations_total_final = recommendations_total[['name', '종가', 'pred_aver']]
             recommendations_total_final = recommendations_total_final.sort_values(by='pred_aver', ascending = False)
             recommendations_total_final.drop_duplicates()
-            
+            st.write((f"\n####### Model 정확도: {(model_1.score(X_test, y_test) + model_2.score(X_test, y_test) + model_3.score(X_test, y_test))*100/3:.2f} %"))
             st.dataframe(recommendations_total_final)
 
             
+
 
 
 
