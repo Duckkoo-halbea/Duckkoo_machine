@@ -19,7 +19,7 @@ today = datetime.today()
 start = (today - timedelta(days = 365)).strftime("%Y%m%d")
 acc_days = 365
 
-col1 = st.columns()
+col1, col2 = st.columns(2)
 with col1:
     #num_thicker = st.slider("**📊  탐색 종목 범위 (Max 1500)**", min_value=100, max_value=1500, value=200, step=10)
     exp_gain = st.slider("**📊  원하는 수익률 목표(%)**", min_value=5, max_value=100, value=10, step=5) / 100    
@@ -145,6 +145,7 @@ with col1:
             st.dataframe(recommendations_total_final)
 
             
+
 
 
 
