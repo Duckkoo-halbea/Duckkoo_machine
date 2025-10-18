@@ -117,9 +117,6 @@ with col1:
             latest_data["pred_2"] = np.round(model_2.predict_proba(X_latest)[:, 1]*100,2)
             latest_data["pred_3"] = np.round(model_3.predict_proba(X_latest)[:, 1]*100,2)
 
-            # 티커 → 종목명 변환
-            latest_data["name"] = latest_data["ticker"].apply(stock.get_market_ticker_name)
-
             # 상승 확률 높은 n개 종목
             recommendations = latest_data.sort_values("pred", ascending=False).head(targ_thicker)
             recommendations_df = recommendations[["ticker", "name", "종가", "pred", "pred_2", "pred_3"]]
@@ -140,6 +137,7 @@ with col1:
             st.dataframe(recommendations_total_final)
 
             
+
 
 
 
