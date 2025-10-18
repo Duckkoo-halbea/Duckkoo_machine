@@ -2,7 +2,6 @@ import os
 import time
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
 import streamlit as st
 from pykrx import stock
 from datetime import datetime, timedelta
@@ -146,4 +145,5 @@ with col1:
             recommendations_total_final = recommendations_total_final.sort_values(by='pred_aver', ascending = False)
             
             st.dataframe(recommendations_total_final)
+
             
