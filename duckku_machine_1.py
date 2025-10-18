@@ -29,7 +29,10 @@ with col1:
     today = datetime.today()
     start = (today - timedelta(days = acc_days)).strftime("%Y%m%d")
     end = today.strftime("%Y%m%d")
-
+    
+    st.write(start)
+    st.write(end)
+    
     ###### Model_1 학습 ######
     model_1 = LGBMClassifier(
         n_estimators=1000,      # 트리 개수 (RandomForest의 n_estimators와 비슷)
@@ -148,5 +151,6 @@ with col1:
             st.dataframe(recommendations_total_final)
 
             
+
 
 
